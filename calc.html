@@ -1,0 +1,129 @@
+<!doctype html>
+<head>
+  <title>𝐶𝑎𝑙𝑐𝑢𝑙𝑎𝑡𝑜𝑟</title>
+  <link rel="icon" href="images/calculator.logo.png">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(66, 209, 245);
+      height: 100vh;
+      font-family:
+        "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+
+    .calculator {
+      background-color: #ffffff;
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.582);
+      text-align: center;
+    }
+    h2 {
+      color: rgb(43, 217, 233);
+      margin-bottom: 14px;
+    }
+    button {
+      background-color: rgba(126, 225, 225, 0.634);
+      border-radius: 30px;
+      width: 50px;
+      height: 50px;
+      margin: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 19px;
+      color: #132e2e;
+    }
+    button:hover {
+      background-color: rgb(57, 207, 227);
+    }
+    button:active {
+      background-color: rgb(21, 186, 227);
+    }
+
+    #display {
+      width: 245px;
+      height: 35px;
+      border-radius: 5px;
+      padding: 6px 10px;
+      text-align: right;
+      font-size: 20px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+    }
+    .equals {
+      background-color: #f46b39;
+    }
+    .equals:hover {
+      background-color: #f45217;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>CALCULATOR</h2>
+    <input type="text" id="display" readonly />
+    <br />
+    <button onclick="clearDisplay()">AC</button>
+    <button onclick="addNumber('%')">%</button>
+    <button onclick="deleteLast()">Del</button>
+    <button onclick="addNumber('/')">÷</button>
+    <br />
+    <button onclick="addNumber('7')">7</button>
+    <button onclick="addNumber('8')">8</button>
+    <button onclick="addNumber('9')">9</button>
+    <button onclick="addNumber('*')">×</button>
+    <br />
+    <button onclick="addNumber('4')">4</button>
+    <button onclick="addNumber('5')">5</button>
+    <button onclick="addNumber('6')">6</button>
+    <button onclick="addNumber('-')">-</button>
+    <br />
+    <button onclick="addNumber('1')">1</button>
+    <button onclick="addNumber('2')">2</button>
+    <button onclick="addNumber('3')">3</button>
+    <button onclick="addNumber('+')">+</button>
+    <br />
+    <button onclick="addNumber('00')">00</button>
+    <button onclick="addNumber('0')">0</button>
+    <button onclick="addNumber('.')">.</button>
+    <button onclick="calculate()" class="equals">=</button>
+  </div>
+  <script>
+   let display = document.getElementById("display");
+
+function addNumber(value) {
+  display.value += value;
+}
+
+function clearDisplay() {
+  display.value = "";
+}
+
+function deleteLast() {
+  display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+  try {
+    display.value = eval(display.value);
+  } catch {
+    display.value = "Error";
+  }
+}
+function calculate() {
+  try {
+    let expression = display.value;
+
+    // convert percentage to division by 100
+    expression = expression.replace(/%/g, "/100");
+
+    display.value = eval(expression);
+  } catch {
+    display.value = "Error";
+  }
+}
+  </script>
+</body>
